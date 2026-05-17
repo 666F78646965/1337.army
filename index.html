@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="🖕">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1337.ARMY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050505;
+            color: #eaeaea;
+            font-family: 'Fira Code', monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
+        .title {
+            font-size: 4rem;
+            margin: 0 0 40px 0;
+            font-weight: 700;
+            letter-spacing: 4px;
+            display: inline-flex;
+            align-items: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+        .cursor {
+            display: inline-block;
+            width: 24px;
+            height: 40px;
+            background-color: #eaeaea;
+            margin: 0 8px;
+            animation: blink 1s step-start infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        @media (max-width: 600px) {
+            .cursor {
+                width: 16px;
+                height: 28px;
+                margin: 0 4px;
+            }
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .binary-wrapper {
+            width: 100%;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        .binary-text {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
+            color: #888;
+            user-select: all;
+            -webkit-user-select: all;
+            -moz-user-select: all;
+            -ms-user-select: all;
+        }
+        .copy-btn {
+            background-color: transparent;
+            color: #eaeaea;
+            border: 1px solid #eaeaea;
+            padding: 10px 24px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .copy-btn:hover {
+            background-color: #eaeaea;
+            color: #050505;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+        .tg-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: transparent;
+            color: #eaeaea;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 28px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        .tg-btn:hover {
+            background-color: #eaeaea;
+            color: #050505;
+            border-color: #eaeaea;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        .tg-btn svg {
+            fill: currentColor;
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        .tg-btn:hover svg {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">1337<span class="cursor"></span>ARMY</div>
+        
+        <div class="binary-wrapper">
+            <div class="binary-text" id="bText">1010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010</div>
+            <button class="copy-btn" id="cBtn" onclick="cp()">COPY</button>
+        </div>
+
+        <a href="https://t.me/ARMY1337" class="tg-btn" onclick="tg(event)">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.43 6.75c-.11.5-.41.62-.83.39l-2.18-1.61-1.05 1.01c-.11.11-.22.21-.45.21l.15-2.2 4.01-3.62c.17-.15-.04-.24-.27-.09l-4.96 3.12-2.13-.67c-.46-.14-.47-.46.1-.68l8.33-3.21c.39-.14.72.1.56.61z"/>
+            </svg>
+            <span>TELEGRAM</span>
+        </a>
+    </div>
+
+    <script>
+        function cp() {
+            const t = document.getElementById('bText').innerText;
+            const b = document.getElementById('cBtn');
+            
+            navigator.clipboard.writeText(t).then(() => {
+                b.innerText = 'COPIED';
+                setTimeout(() => { b.innerText = 'COPY'; }, 2000);
+            }).catch(() => {
+                const dummy = document.createElement('textarea');
+                document.body.appendChild(dummy);
+                dummy.value = t;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                b.innerText = 'COPIED';
+                setTimeout(() => { b.innerText = 'COPY'; }, 2000);
+            });
+        }
+
+        function tg(e) {
+            e.preventDefault();
+            if (confirm("Open Telegram group @ARMY1337?")) {
+                window.open("https://t.me/ARMY1337", "_blank");
+            }
+        }
+    </script>
+</body>
+</html>
