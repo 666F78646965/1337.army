@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1337.ARMY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #eaeaea;
+            --wrapper-bg: rgba(255, 255, 255, 0.02);
+            --wrapper-border: rgba(255, 255, 255, 0.05);
+        }
+        body[data-theme="light"] {
+            --bg-color: #eaeaea;
+            --text-color: #050505;
+            --wrapper-bg: rgba(0, 0, 0, 0.02);
+            --wrapper-border: rgba(0, 0, 0, 0.05);
+        }
         * {
             box-sizing: border-box;
         }
@@ -15,14 +27,15 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #050505;
-            color: #eaeaea;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Fira Code', monospace;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: fixed;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .container {
             display: flex;
@@ -35,13 +48,13 @@
             text-align: center;
         }
         .title {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 4rem;
             margin: 0 0 40px 0;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             display: inline-flex;
             align-items: center;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         @media (max-width: 600px) {
             .title {
@@ -50,18 +63,17 @@
         }
         .cursor {
             display: inline-block;
-            width: 24px;
-            height: 40px;
-            background-color: #eaeaea;
-            margin: 0 8px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--text-color);
+            margin: 0 16px;
             animation: blink 1s step-start infinite;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
         @media (max-width: 600px) {
             .cursor {
-                width: 16px;
-                height: 28px;
-                margin: 0 4px;
+                width: 6px;
+                height: 6px;
+                margin: 0 10px;
             }
         }
         @keyframes blink {
@@ -74,10 +86,10 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--wrapper-bg);
+            border: 1px solid var(--wrapper-border);
             border-radius: 8px;
+            padding: 20px;
         }
         .binary-text {
             font-size: 1.1rem;
@@ -94,54 +106,78 @@
         }
         .copy-btn {
             background-color: transparent;
-            color: #eaeaea;
-            border: 1px solid #eaeaea;
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
             padding: 10px 24px;
-            font-family: 'Fira Code', monospace;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .copy-btn:hover {
-            background-color: #eaeaea;
-            color: #050505;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            background-color: var(--text-color);
+            color: var(--bg-color);
         }
         .tg-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background-color: transparent;
-            color: #eaeaea;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 14px 28px;
-            font-family: 'Fira Code', monospace;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 14px 32px;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-decoration: none;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: all 0.2s ease;
             letter-spacing: 1px;
         }
         .tg-btn:hover {
-            background-color: #eaeaea;
-            color: #050505;
-            border-color: #eaeaea;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            background-color: transparent;
+            color: var(--text-color);
         }
         .tg-btn svg {
             fill: currentColor;
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s ease;
         }
         .tg-btn:hover svg {
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 1px solid var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+        .theme-toggle::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--text-color);
+            transition: all 0.2s ease;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -161,6 +197,8 @@
             <span>TELEGRAM</span>
         </a>
     </div>
+
+    <button class="theme-toggle" id="tBtn" onclick="tc()"></button>
 
     <script>
         function cp() {
@@ -186,6 +224,15 @@
             e.preventDefault();
             if (confirm("Open Telegram group @ARMY1337?")) {
                 window.open("https://t.me/ARMY1337", "_blank");
+            }
+        }
+
+        function tc() {
+            const b = document.body;
+            if (b.getAttribute('data-theme') === 'light') {
+                b.removeAttribute('data-theme');
+            } else {
+                b.setAttribute('data-theme', 'light');
             }
         }
     </script>
